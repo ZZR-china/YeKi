@@ -1,3 +1,5 @@
+// nodejs 运行时全局方法、变量
+
 global.debug = (() => {
     const log = console.log.bind(console);
 

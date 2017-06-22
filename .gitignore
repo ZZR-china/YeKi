@@ -59,3 +59,9 @@ typings/
 .env
 
 ftp.md
+
+dist/
+
+docs/
+
+doc/
