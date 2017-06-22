@@ -1,13 +1,14 @@
 'use strict';
 
-require('./globals');
+require('../server/globals');
 require('./setup-qcloud-sdk');
 
-const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const config = require('./config');
+const config = require('./env');
+const routes = require('../server/routes');
+const resources = require('../server/resources');
 
 const app = express();
 
@@ -28,14 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse `application/json`
 app.use(bodyParser.json());
 
-app.use('/', require('./routes'));
+app.use('/', routes);
+app.use('/', resources);
 
-// 打印异常日志
-process.on('uncaughtException', error => {
-    console.log(error);
-});
-
-// 启动server
-http.createServer(app).listen(config.port, () => {
-    console.log('Express server listening on port: %s', config.port);
-});
+module.exports = app
