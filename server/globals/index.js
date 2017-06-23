@@ -1,4 +1,12 @@
+'use strict';
+
+const path = require('path');
+
 // nodejs 运行时全局方法、变量
+
+global.node_env = process.env.NODE_ENV || 'development';
+
+global.rootPath = path.join(__dirname, '/../..')
 
 global.debug = (() => {
     const log = console.log.bind(console);
@@ -13,3 +21,5 @@ global.debug = (() => {
         log('========================================\n');
     };
 })();
+
+global.conf = require('../../conf')

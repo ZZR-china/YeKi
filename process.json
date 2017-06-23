@@ -1,6 +1,6 @@
 {
     "name": "weapp",
-    "script": "serve.js",
+    "script": "./bin/start.js",
     "cwd": "./",
     "exec_mode": "fork",
     "watch": true,

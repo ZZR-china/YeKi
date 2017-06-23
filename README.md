@@ -1,5 +1,7 @@
 sequelize demo
 
+https://github.com/sequelize/express-example
+
 https://github.com/debugEagle/paishou_server
 
 https://github.com/debugEagle/paishou_server/blob/master/package.json

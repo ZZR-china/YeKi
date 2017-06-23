@@ -1,12 +1,11 @@
 'use strict';
 
 require('../server/globals');
-require('./setup-qcloud-sdk');
+require('../conf/setup-qcloud-sdk');
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const config = require('./env');
 const routes = require('../server/routes');
 const resources = require('../server/resources');
 
