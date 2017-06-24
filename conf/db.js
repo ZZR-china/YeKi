@@ -14,9 +14,12 @@ const env = process.env.NODE_ENV || 'development';
 const db = {
     development: {
         mysql: {
+            username: 'root',
+            password: '123',
             host: 'localhost',
             port: 3306,
             dialect: 'mysql',
+            database: 'iyouyou',
             timezone: 'Asia/Shanghai',  /* 时区 */
             logging: false,
             pool: {
@@ -35,8 +38,11 @@ const db = {
     },
     production: {
         mysql: {
+            username: process.env.MYSQL_USERNAME,
+            password: process.env.MYSQL_PWD,
             host: process.env.MYSQL_HOST,
             port: process.env.MYSQL_PORT,
+            database: process.env.MYSQL_DATABASE,
             dialect: 'mysql',
             timezone: 'Asia/Shanghai',  /* 时区 */
             logging: false,

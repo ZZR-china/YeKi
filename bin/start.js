@@ -1,9 +1,11 @@
 'use strict';
 
 const http = require('http');
+const Sequelize = require('sequelize');
 const debug = require('debug')('init:server');
 const conf = require('../conf');
 const app = require('./express');
+const models = require('../server/models');
 
 // 打印异常日志
 process.on('uncaughtException', error => {
@@ -13,20 +15,20 @@ process.on('uncaughtException', error => {
 /**
  *  open mysql connect
  */
-
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
-const db = {};
-
-/**
- * Create HTTP server.
- */
-
-const port = conf.port;
 const server = http.createServer(app);
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+models.sequelize.sync().then(function() {
+   /**
+    * Listen on provided port, on all network interfaces.
+    */
+   const port = conf.port;
+
+   server.listen(port);
+   server.on('error', onError);
+   server.on('listening', onListening);
+});
+
+
 
 /**
  * Event listener for HTTP server "listening" event.
