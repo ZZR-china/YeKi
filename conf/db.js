@@ -13,30 +13,13 @@ const env = process.env.NODE_ENV || 'development';
 
 const db = {
     development: {
-        // mysql: {
-        //     username: 'root',
-        //     password: '123',
-        //     host: 'localhost',
-        //     port: 3306,
-        //     dialect: 'mysql',
-        //     database: 'iyouyou',
-        //     timezone: 'Asia/Shanghai',  /* 时区 */
-        //     logging: false,
-        //     pool: {
-        //         max: 5,
-        //         min: 0,
-        //         idle: 10000
-        //     },
-        //     /* 事务隔离级别为最高 */
-        //     isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.SERIALIZABLE
-        // },
         mysql: {
-            host: 'bdm248477122.my3w.com',
-            username: 'bdm248477122',
-            password: 'zhulyl520',
+            username: 'root',
+            password: '123',
+            host: 'localhost',
             port: 3306,
             dialect: 'mysql',
-            database: 'bdm248477122_db',
+            database: 'iyouyou',
             timezone: 'Asia/Shanghai',  /* 时区 */
             logging: false,
             pool: {
@@ -45,7 +28,7 @@ const db = {
                 idle: 10000
             },
             /* 事务隔离级别为最高 */
-            isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.SERIALIZABLE,
+            isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.SERIALIZABLE
         },
         redis: {
             host: 'localhost',
