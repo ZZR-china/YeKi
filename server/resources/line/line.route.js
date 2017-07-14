@@ -17,18 +17,13 @@ const models = require('../../models')
 router.route('/')
       .get(async (req, res) => {
       	const tourline = await models.Tourline.findAndCountAll({
+              where: {
+                  is_effect: 1
+              },
               limit: 10,
               offset: 1
             })
       	return res.send(tourline)
-      })
-      .post(async (req, res) => {
-      	const userCreateRes = await models.Line.create({
-      	  username: req.body.username,
-      	  sexg: 1,
-      	  pwd: 'asdsadsad'
-      	})
-      	return res.send(userCreateRes)
       })
 
 module.exports = {
