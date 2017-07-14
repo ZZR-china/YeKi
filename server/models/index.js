@@ -13,6 +13,15 @@ if (process.env.DATABASE_URL) {
   sequelize = new Sequelize(mysqlConf.database, mysqlConf.username, mysqlConf.password, mysqlConf);
 }
 
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
 let db = {};
 
 fs
