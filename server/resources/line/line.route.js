@@ -4,12 +4,6 @@ const express = require('express');
 const router = express.Router();
 const models = require('../../models')
 
-function testpromise () {
-	return new Promise((resolve, reject) => {
-		return resolve('asdsad')
-	})
-}
-
 /**
  * @api {get} /line 线路路由
  * @apiName GetLine
@@ -22,7 +16,10 @@ function testpromise () {
  */
 router.route('/')
       .get(async (req, res) => {
-      	const tourline = await models.Tourline.findAll({})
+      	const tourline = await models.Tourline.findAndCountAll({
+              limit: 10,
+              offset: 1
+            })
       	return res.send(tourline)
       })
       .post(async (req, res) => {
