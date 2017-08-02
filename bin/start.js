@@ -28,8 +28,6 @@ models.sequelize.sync().then(function() {
    server.on('listening', onListening);
 });
 
-
-
 /**
  * Event listener for HTTP server "listening" event.
  */

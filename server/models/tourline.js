@@ -4,6 +4,7 @@ module.exports = function(sequelize, DataTypes) {
   const Tourline = sequelize.define('Tourline', {
     name: DataTypes.STRING,
     short_name: DataTypes.STRING,
+    is_effect: DataTypes.INTEGER,
     origin_price: DataTypes.DOUBLE,
     price: DataTypes.DOUBLE,
     price_explain: DataTypes.STRING,

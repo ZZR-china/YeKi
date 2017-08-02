@@ -5,7 +5,7 @@ const qcloud = require('qcloud-weapp-server-sdk');
 const sdkConfig = (() => {
     // Windows
     if (os.type().toLowerCase().startsWith('windows')) {
-        return 'C:\\qcloud\\sdk.config';
+        return 'F:\\YouYou\\qcloud\\sdk.config';
     }
 
     // Linux
