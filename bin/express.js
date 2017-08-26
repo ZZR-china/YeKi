@@ -1,7 +1,6 @@
 'use strict';
 
 require('../server/globals');
-require('../conf/setup-qcloud-sdk');
 
 const express = require('express');
 const bodyParser = require('body-parser');

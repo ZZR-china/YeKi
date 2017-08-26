@@ -11,7 +11,7 @@ const db = {
             host: 'localhost',
             port: 3306,
             dialect: 'mysql',
-            database: 'iyouyou',
+            database: 'yeki',
             timezone: 'Asia/Shanghai',  /* 时区 */
             logging: false,
             pool: {
