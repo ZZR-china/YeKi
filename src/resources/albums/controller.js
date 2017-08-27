@@ -11,22 +11,11 @@ import models from '../../models'
   @apiSuccessExample {json} Success-Response:
     HTTP/1.1 200 OK
     {
-      "list": [
+      "count": 1,
+      "rows": [
         {
-          "_id": "58c949c5d18e2024b66360fc",
-          "user": "58c94997d18e2024b66360fb",
-          "novel": {
-            "_id": "58c4cb509e4dad30f80d2f84",
-            "url": "http://www.37zw.com/3/3960/",
-            "name": "1852铁血中华",
-            "author": "绯红之月",
-            "updateTime": "2017-03-12",
-            "introduction": "    1852,是革命，或者是一场该改朝换代的改良。燃烧的铁与血，最终能创造一个什么样的未来？\n",
-            "__v": 0,
-            "countChapter": "1377",
-            "lastChapterTitle": "第644章 剪影 3",
-            "img": "http://www.37zw.com/d/image/3/3960/3960s.jpg"
-          }
+          "id": 1,
+          "album_views": 11
         }
       ]
     }
@@ -40,12 +29,18 @@ import models from '../../models'
 export async function getAlbums (ctx) {
   let list
   try {
-    list = await models.Album.findAndCountAll({})
+    list = await models.Album.findAndCountAll({
+      where: {
+        hide: 1
+      },
+      limit: 10,
+      offset: 0
+    })
   } catch (e) {
     ctx.throw(422, e.message)
   }
 
   ctx.body = {
-    list: list
+    ...list
   }
 }

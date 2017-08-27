@@ -16,6 +16,14 @@ global.Handle =  handle
 const app = new Koa()
 app.keys = [config.jwtSecret]
 
+// x-response-time
+app.use(async (ctx, next) => {
+  const start = Date.now()
+  await next()
+  const ms = Date.now() - start
+  ctx.set('X-Response-Time', `${ms}ms`)
+})
+
 app.use(convert(logger()))
 app.use(bodyParser())
 app.use(errorMiddleware())

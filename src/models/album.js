@@ -3,7 +3,12 @@
 module.exports = function(sequelize, DataTypes) {
   const Album = sequelize.define('Album', {
     album_name: DataTypes.STRING,
+    album_description: DataTypes.STRING,
     album_views: DataTypes.INTEGER,
+    album_cover_url: DataTypes.STRING,
+    album_type: DataTypes.INTEGER,
+    album_isopen: DataTypes.INTEGER,
+    hide: DataTypes.INTEGER
   }, {
     tableName: 'yeki_album',
     freezeTableName: true,
