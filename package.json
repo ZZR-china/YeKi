@@ -5,31 +5,49 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production pm2 start process.json",
-    "dev": "cross-env NODE_ENV=development supervisor ./bin/start.js",
-    "docs": "apidoc -i server/ -o docs/"
+    "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon index.js",
+    "docs": "apidoc -i src/ -o docs/"
   },
-  "keywords": [],
+  "keywords": [
+    "api",
+    "koa",
+    "koa2",
+    "boilerplate",
+    "es6",
+    "mysql",
+    "apidoc"
+  ],
   "author": "CFETeam",
   "license": "MIT",
   "dependencies": {
     "apidoc": "^0.17.6",
     "axios": "^0.16.2",
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
     "body-parser": "^1.15.2",
-    "express": "^4.14.0",
     "glob": "^7.1.2",
-    "joi": "^10.6.0",
     "jsonwebtoken": "^7.4.1",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-logger": "^3.0.1",
+    "koa-mount": "^3.0.0",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
     "lodash": "^4.16.1",
-    "morgan": "^1.7.0",
     "mysql": "^2.13.0",
     "mysql2": "^1.3.5",
-    "qcloud-weapp-server-sdk": "latest",
+    "nodemailer": "^4.0.1",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "nodemailer-wellknown": "^0.2.3",
+    "nodemon": "^1.11.0",
     "sequelize": "^4.1.0",
-    "supervisor": "^0.12.0",
-    "util": "^0.10.3"
+    "supervisor": "^0.12.0"
   },
   "devDependencies": {
-    "cross-env": "^5.0.1",
-    "mocha": "^3.4.2"
+    "cross-env": "^5.0.1"
   }
 }

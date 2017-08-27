@@ -17,7 +17,7 @@ https://itbilu.com/nodejs/core/VkYIaRPz-.html#api-instance-sync
 ## 项目结构
 
 ```
-Demo
+Backend
 ├── README.md
 ├── app.js
 ├── business

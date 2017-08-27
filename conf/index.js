@@ -1,8 +1,7 @@
-'use strict'
+import common from './env/common'
 
-let conf = {};
+const env = process.env.NODE_ENV || 'development'
+// eslint-disable-line import/no-dynamic-require
+const config = require(`./env/${env}`).default
 
-conf.db = require('./db')
-conf.port = require('./port')
-
-module.exports = conf;
+export default Object.assign({}, common, config)

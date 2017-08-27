@@ -1,10 +1,11 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const env = process.env.NODE_ENV || 'development';
-const mysqlConf = conf.db.mysql;
+import conf from '../../conf'
+const fs = require('fs')
+const path = require('path')
+const Sequelize = require('sequelize')
+const env = process.env.NODE_ENV || 'development'
+const mysqlConf = conf.db.mysql
 
 let sequelize;
 if (process.env.DATABASE_URL) {
@@ -43,4 +44,4 @@ Object.keys(db).forEach(function(modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+export default db

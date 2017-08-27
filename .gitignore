@@ -48,7 +48,6 @@ typings/
 
 node_modules
 jspm_packages
->>>>>>> ca84cfaf911d675c18ab8e2daf2eda9f17e96acc
 
 # Optional npm cache directory
 .npm
