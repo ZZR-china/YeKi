@@ -5,6 +5,7 @@ export default {
   rootPath: path.join(__dirname, '/../..'),
   origin_web: {
 	  meizi: {
+	  	id: 1,
 	  	url: 'http://m.mzitu.com',
 	  	name: '妹子图'
 	  }

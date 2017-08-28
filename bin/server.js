@@ -8,7 +8,7 @@ import sequelize from 'sequelize'
 
 import config from '../conf'
 import handle from '../src/utils/handle'
-import { errorMiddleware } from '../src/middleware'
+import { errorMiddleware, responseMiddleware } from '../src/middleware'
 import models from '../src/models'
 
 global.Handle =  handle
@@ -17,18 +17,13 @@ const app = new Koa()
 app.keys = [config.jwtSecret]
 
 // x-response-time
-app.use(async (ctx, next) => {
-  const start = Date.now()
-  await next()
-  const ms = Date.now() - start
-  ctx.set('X-Response-Time', `${ms}ms`)
-})
-
+app.use(responseMiddleware())
 app.use(convert(logger()))
 app.use(bodyParser())
 app.use(errorMiddleware())
 
 app.use(convert(mount('/docs', serve(`${process.cwd()}/docs`))))
+app.use(convert(mount('/upload', serve(`${process.cwd()}/upload`))))
 
 const resources = require('../src/resources')
 resources(app)

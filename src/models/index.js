@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 import conf from '../../conf'
 const fs = require('fs')

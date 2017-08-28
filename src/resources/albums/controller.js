@@ -1,5 +1,6 @@
 import models from '../../models'
 
+const { Album } = models
 /**
   @api {GET} /albums 获取图册列表
   @apiPermission User
@@ -29,7 +30,7 @@ import models from '../../models'
 export async function getAlbums (ctx) {
   let list
   try {
-    list = await models.Album.findAndCountAll({
+    list = await Album.findAndCountAll({
       where: {
         hide: 1
       },
@@ -44,3 +45,19 @@ export async function getAlbums (ctx) {
     ...list
   }
 }
+
+export async function testAlbums (ctx) {
+  try {
+    let list = await Album.findOne({
+      where: {
+        album_name: 'shijie'
+      }
+    })
+    return ctx.body = {
+      list: list
+    }
+  } catch (e) {
+    ctx.throw(422, e.message)
+  }
+}
+

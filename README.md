@@ -1,44 +1,45 @@
-sequelize demo
+## YeKi
 
-https://github.com/sequelize/express-example
+![夜凯](http://7xrw5x.com1.z0.glb.clouddn.com/yekilogo.jpg)
 
-https://github.com/debugEagle/paishou_server
+YeKi for great things
 
-https://github.com/debugEagle/paishou_server/blob/master/package.json
+## how to start
 
-sequelize
+*nodejs and mysql is needed!*
 
-https://github.com/sequelize/sequelize
+```
+git clone git@github.com:ZZR-china/YeKi.git
 
-sequelize 学习文档
+cd YeKi&&yarn install
 
-https://itbilu.com/nodejs/core/VkYIaRPz-.html#api-instance-sync
+yarn run dev
+```
 
 ## 项目结构
 
 ```
-Backend
+YeKi
+├── bin
+│   └── server.js
+├── conf
+│   └── index.js
+│   └── env
+│      └── common.js
+│      └── development.js
+│      └── production.js
+├── docs
+├── src
+│   └── middleware
+│   └── models
+│   └── resources
+│   └── utils
 ├── README.md
-├── app.js
-├── business
-│   └── chat-tunnel-handler.js
-├── config.js
-├── globals.js
+├── Learn.md
+├── index.js
 ├── package.json
 ├── process.json
-├── routes
-│   ├── index.js
-│   ├── welcome.js
-│   ├── login.js
-│   ├── user.js
-│   └── tunnel.js
-└── setup-qcloud-sdk.js
+├── yarn.lock
 ```
 
-其中，`app.js` 是 启动文件，`config.js` 配置了启动服务监听的端口号，`process.json` 是运行本示例 的 `pm2` 配置文件。
-
-```
-
-# yeki
-
-yeki frame of nodejs
+其中，`index.js` 是 启动文件, `conf` 文件夹是配置文件, 本地数据库配置在`./conf/env/development.js`中

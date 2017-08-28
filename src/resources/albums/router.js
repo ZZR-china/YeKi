@@ -9,5 +9,11 @@ export default [
     handlers: [
       album.getAlbums
     ]
+  }, {
+  	method: 'GET',
+  	route: '/test',
+  	handlers: [
+  	  album.testAlbums
+  	]
   }
 ]
