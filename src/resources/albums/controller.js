@@ -26,7 +26,7 @@ const { Album } = models
         "status": 422,
         "error": ""
       }
- */
+*/
 export async function getAlbums (ctx) {
   let list
   try {
@@ -60,4 +60,3 @@ export async function testAlbums (ctx) {
     ctx.throw(422, e.message)
   }
 }
-

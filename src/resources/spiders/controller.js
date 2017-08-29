@@ -18,7 +18,7 @@ import spiderCtrl from '../../utils/spiders'
         "status": 422,
         "error": ""
       }
- */
+*/
 export async function getMeizi (ctx) {
   try {
     await spiderCtrl['meizi'].start(ctx)
@@ -27,23 +27,3 @@ export async function getMeizi (ctx) {
     ctx.throw(422, e.message)
   }
 }
-
-export async function testAlbums (ctx) {
-  try {
-    console.log('ctx',  ctx.request.query)
-    let list = await Album.findOne({
-      where: {
-        album_name: 'shijie'
-      }
-    })
-    // const newAlbum = await Album.create({
-    //   album_name: 'John'
-    // })
-    return ctx.body = {
-      list: list
-    }
-  } catch (e) {
-    ctx.throw(422, e.message)
-  }
-}
-

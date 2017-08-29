@@ -7,7 +7,6 @@ import * as _time from '../time'
 
 const { Album, Pic, AlbumPic, Category, CategoryAlbum, CategoryPic } = models
 const homesite = config.origin_web.meizi
-
 /**
  * [manageBricks 处理获得的$('#post-archives .archive-brick').eq(n)
  * 得到其中的网址并解析]

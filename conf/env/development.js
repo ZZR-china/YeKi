@@ -15,7 +15,7 @@ export default {
 		  host: 'localhost',
 		  port: 3306,
 		  dialect: 'mysql',
-		  database: 'yekitest',
+		  database: 'yeki',
 		  timezone: 'Asia/Shanghai',
 		  logging: false,
 		  pool: {

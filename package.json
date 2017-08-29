@@ -52,7 +52,7 @@
     "sequelize": "^4.1.0"
   },
   "devDependencies": {
-    "cross-env": "^5.0.1",
+    "cross-env": "^5.0.5",
     "supervisor": "^0.12.0"
   }
 }

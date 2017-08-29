@@ -7,7 +7,6 @@ exports = module.exports = function initModules (app) {
 
     matches.forEach((mod) => {
       const router = require(`${mod}/router`)
-
       const routes = router.default
       const baseUrl = router.baseUrl
       const instance = new Router({ prefix: baseUrl })
