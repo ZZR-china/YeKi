@@ -24,12 +24,21 @@ export default function(sequelize, DataTypes) {
     },
     room_max_people: {
       type: DataTypes.INTEGER,
+      defaultValue: 3,
       comment: '房间可容纳人数, 创建后不可修改'
     },
     room_status: {
       type: DataTypes.INTEGER(3),
       defaultValue: 0,
       comment: '房间状态: 0.初始化未使用、1.等待中、2.游戏中、3.暂停中、4.结算中、5.游戏结束、6.因违规等原因封掉'
+    },
+    room_puzzle: {
+      type: DataTypes.INTEGER,
+      comment: '房间关联谜题id'
+    },
+    room_puzzle_ansower: {
+      type: DataTypes.INTEGER,
+      comment: '房间关联谜题正确答案id，每个房间的谜题正确答案都是随机的'
     },
     user_id: {
       type: DataTypes.INTEGER,

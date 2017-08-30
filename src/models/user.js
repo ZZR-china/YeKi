@@ -27,6 +27,10 @@ export default function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       comment: '用户昵称'
     },
+    user_point: {
+      type: DataTypes.INTEGER,
+      comment: '用户积分'
+    },
     user_email: {
       type: DataTypes.STRING,
       comment: '用户邮箱',
