@@ -2,25 +2,27 @@ import conf from '../../conf'
 const db_prefix = conf.db.prefix
 
 /**
- * [分类与图片关系model, 多对多关系]
+ * [房间与用户关系model, 多对多关系]
  * @param  {[type]} sequelize [description]
  * @param  {[type]} DataTypes [description]
  * @return {[type]}           [description]
  */
 export default function(sequelize, DataTypes) {
-  const CategoryPic = sequelize.define('CategoryPic', {
-    category_id: { 
+  const RoomUser = sequelize.define('RoomUser', {
+    room_id: { 
       type: DataTypes.INTEGER,
       allowNull: false,
+      comment: '房间id'
     },
-    pic_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      comment: '用户id'
     }
   }, {
-    tableName: db_prefix + 'category_pic',
+    tableName: db_prefix + 'room_user',
     freezeTableName: true,
     timestamps: false
   })
-  return CategoryPic
+  return RoomUser
 }

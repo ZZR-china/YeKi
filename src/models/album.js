@@ -1,11 +1,17 @@
 import conf from '../../conf'
 const db_prefix = conf.db.prefix
 
+/**
+ * [图册model]
+ * @param  {[type]} sequelize [description]
+ * @param  {[type]} DataTypes [description]
+ * @return {[type]}           [description]
+ */
 export default function(sequelize, DataTypes) {
   const Album = sequelize.define('Album', {
     album_name: { 
       type: DataTypes.STRING(190), 
-      unique: true, 
+      unique: true,
       allowNull: false, 
       comment: '图册名字'
     },
@@ -15,7 +21,7 @@ export default function(sequelize, DataTypes) {
     },
     album_views: { 
       type: DataTypes.INTEGER(11), 
-      defaultValue: 0, 
+      defaultValue: 0,
       comment: '图册浏览量'
     },
     album_cover_url: { 
@@ -48,7 +54,11 @@ export default function(sequelize, DataTypes) {
       defaultValue: 1, 
       comment: '图册是否逻辑删除, 0.删除, 1.未删除'
     },
-    createtime: { 
+    update_time: {
+      type: DataTypes.DATE,
+      comment: '图册最近一次修改时间' 
+    },
+    create_time: { 
       type: DataTypes.DATE,
       defaultValue: sequelize.NOW, 
       comment: '记录创建时间'

@@ -1,13 +1,19 @@
 import conf from '../../conf'
 const db_prefix = conf.db.prefix
 
+/**
+ * [图片model]
+ * @param  {[type]} sequelize [description]
+ * @param  {[type]} DataTypes [description]
+ * @return {[type]}           [description]
+ */
 export default function(sequelize, DataTypes) {
   const Pic = sequelize.define('Pic', {
     pic_name: {
       type: DataTypes.STRING(190), 
       allowNull: false, 
       unique: true,
-      comment: '图片名字' 
+      comment: '图片名字'
     },
     pic_description: { 
       type: DataTypes.STRING(225), 
@@ -52,7 +58,7 @@ export default function(sequelize, DataTypes) {
       defaultValue: 1,
       comment: '图片是否逻辑删除, 0.删除, 1.未删除'
     },
-    createtime: { 
+    create_time: { 
       type: DataTypes.DATE, 
       defaultValue: sequelize.NOW, 
       comment: '记录创建时间'
