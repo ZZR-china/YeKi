@@ -2,7 +2,7 @@ import conf from '../../conf'
 const db_prefix = conf.db.prefix
 
 /**
- * [房间model]
+ * [房间model, 每个人同一时间只能创建一个房间]
  * @param  {[type]} sequelize [description]
  * @param  {[type]} DataTypes [description]
  * @return {[type]}           [description]
@@ -10,9 +10,9 @@ const db_prefix = conf.db.prefix
 export default function(sequelize, DataTypes) {
   const Room = sequelize.define('Room', {
     room_name: {
-      type: DataTypes.STRING(190),
-      allowNull: false,
-      comment: '房间名字'
+      type: DataTypes.STRING,
+      defaultValue: '',
+      comment: '房间名字, 不必要，可为空'
     },
     room_password: {
       type: DataTypes.STRING,
@@ -27,10 +27,15 @@ export default function(sequelize, DataTypes) {
       defaultValue: 3,
       comment: '房间可容纳人数, 创建后不可修改'
     },
+    room_type: {
+      type: DataTypes.INTEGER(3),
+      defaultValue: 1,
+      comment: '房间类型: 1.谜语房间、2.休闲房间'
+    },
     room_status: {
       type: DataTypes.INTEGER(3),
       defaultValue: 0,
-      comment: '房间状态: 0.初始化未使用、1.等待中、2.游戏中、3.暂停中、4.结算中、5.游戏结束、6.因违规等原因封掉'
+      comment: '房间状态: 0.初始化未使用、1.等待中、2.游戏中、3.暂停中、4.匹配中、5.结算中、6.游戏结束、7.因违规等原因封掉'
     },
     room_puzzle: {
       type: DataTypes.INTEGER,
@@ -42,7 +47,7 @@ export default function(sequelize, DataTypes) {
     },
     user_id: {
       type: DataTypes.INTEGER,
-      comment: '创建人id' 
+      comment: '创建人id'
     },
     hide: {
       type: DataTypes.INTEGER(1), 
@@ -51,11 +56,11 @@ export default function(sequelize, DataTypes) {
     },
     update_time: {
       type: DataTypes.DATE,
-      comment: '房间信息最近一次修改时间' 
+      comment: '房间信息最近一次修改时间'
     },
     create_time: {
       type: DataTypes.DATE,
-      defaultValue: sequelize.NOW, 
+      defaultValue: sequelize.NOW,
       comment: '记录创建时间'
     }
   }, {

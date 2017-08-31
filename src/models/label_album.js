@@ -9,7 +9,7 @@ const db_prefix = conf.db.prefix
  */
 export default function(sequelize, DataTypes) {
   const LabelAlbum = sequelize.define('LabelAlbum', {
-    label_id: { 
+    label_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: '标签id'

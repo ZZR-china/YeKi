@@ -8,7 +8,7 @@ const { Album } = models
   @apiName 获取图册列表
   @apiGroup Albums
   @apiExample Example usage:
-    curl -H "Content-Type: application/json" "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4YjhmZDRkODUyYTE1YzliNmYyNjI3MSIsImlhdCI6MTQ4ODU1MTc2N30.IEgYwmgyqOBft9s38ool7cmuC2yIlWYVLf4WQzcbqAI" -X GET localhost:5000/bookshelfs
+    curl -H "Content-Type: application/json" "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4YjhmZDRkODUyYTE1YzliNmYyNjI3MSIsImlhdCI6MTQ4ODU1MTc2N30.IEgYwmgyqOBft9s38ool7cmuC2yIlWYVLf4WQzcbqAI" -X GET localhost:3000/albums
   @apiSuccessExample {json} Success-Response:
     HTTP/1.1 200 OK
     {
@@ -28,21 +28,19 @@ const { Album } = models
       }
 */
 export async function getAlbums (ctx) {
-  let list
   try {
-    list = await Album.findAndCountAll({
+    let list = await Album.findAndCountAll({
       where: {
         hide: 1
       },
       limit: 10,
       offset: 0
     })
+    ctx.body = {
+      ...list
+    }
   } catch (e) {
     ctx.throw(422, e.message)
-  }
-
-  ctx.body = {
-    ...list
   }
 }
 
