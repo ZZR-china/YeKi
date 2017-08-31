@@ -48,6 +48,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "nodemailer-wellknown": "^0.2.3",
     "nodemon": "^1.11.0",
+    "react": "^15.6.1",
     "request": "^2.81.0",
     "sequelize": "^4.1.0"
   },

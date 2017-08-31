@@ -1,4 +1,5 @@
 import models from '../../models'
+import React from 'react'
 
 const { Rooms } = models
 
@@ -28,16 +29,13 @@ const { Rooms } = models
 */
 export async function getRooms (ctx) {
   try {
-    let list = await Rooms.findAndCountAll({
-      where: {
-        hide: 1
-      },
-      limit: 10,
-      offset: 0
-    })
-    ctx.body = {
-      ...list
-    }
+    var MyComponent = React.createClass({
+      render: function () {
+        return <div>Hello World!</div>;
+      }
+    });
+    var world= React.renderToStaticMarkup(<MyCompoent />);
+    ctx.body = world
   } catch (e) {
     ctx.throw(422, e.message)
   }
