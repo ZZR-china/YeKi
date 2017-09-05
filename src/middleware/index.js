@@ -18,3 +18,19 @@ export function responseMiddleware () {
     ctx.set('X-Response-Time', `${ms}ms`)
   }
 }
+
+/*
+ * koa-react-view.js
+ * 提供 react server render 功能
+ * {
+ *   options : {
+ *     viewpath: viewpath,                 // the root directory of view files
+ *     doctype: '<!DOCTYPE html>',
+ *     extname: '.js',                     // view层直接渲染文件名后缀
+ *     writeResp: true,                    // 是否需要在view层直接输出
+ *   }
+ * }
+ */
+export function reactView () {
+
+}

@@ -1,5 +1,4 @@
 import models from '../../models'
-import React from 'react'
 
 const { Rooms } = models
 
@@ -29,13 +28,7 @@ const { Rooms } = models
 */
 export async function getRooms (ctx) {
   try {
-    var MyComponent = React.createClass({
-      render: function () {
-        return <div>Hello World!</div>;
-      }
-    });
-    var world= React.renderToStaticMarkup(<MyCompoent />);
-    ctx.body = world
+    ctx.body = 'room'
   } catch (e) {
     ctx.throw(422, e.message)
   }
