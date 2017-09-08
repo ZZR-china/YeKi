@@ -20,12 +20,10 @@ const nexthandle = nextapp.getRequestHandler()
 
 global.Handle =  handle
 
-const app = new Koa()
-
 nextapp.prepare()
 .then(() => {
-  const router = new Router()
-  app.keys = [config.jwtSecret]
+	const app = new Koa()
+	app.keys = [config.jwtSecret]
   // x-response-time
   app.use(responseMiddleware())
   app.use(convert(logger()))
@@ -37,7 +35,9 @@ nextapp.prepare()
 
   // 引入 restful api 路由
   resources(app)
-  // 引入 views
+  // 引入views
+  const router = new Router()
+
   router.get('/a', async ctx => {
     await nextapp.render(ctx.req, ctx.res, '/b', ctx.query)
     ctx.respond = false
@@ -52,24 +52,25 @@ nextapp.prepare()
     await nexthandle(ctx.req, ctx.res)
     ctx.respond = false
   })
+
+  app.use(async (ctx, next) => {
+     ctx.res.statusCode = 200
+     await next()
+   })
   /**
    *  open mysql connect
    */
-  app.use(async (ctx, next) => {
-    ctx.res.statusCode = 200
-    await next()
-  })
-
   models.sequelize.sync().then(function() {
     // Listen on provided port, on all network interfaces.
-    const port = config.port
+  	const port = config.port
 
-    app.use(router.routes())
+  	app.use(router.routes())
 
-    app.listen(config.port, () => {
-      console.log(`Server started on ${config.port}`)
-    })
+  	app.listen(config.port, () => {
+  	  console.log(`Server started on ${config.port}`)
+  	})
   })
-})
 
-module.exports = app
+  module.exports = app
+
+})
