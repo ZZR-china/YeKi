@@ -1,6 +1,4 @@
 import Koa from 'koa'
-import next from 'next'
-import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
 import convert from 'koa-convert'
 import logger from 'koa-logger'
@@ -14,62 +12,33 @@ import handle from '../src/utils/handle'
 import { errorMiddleware, responseMiddleware } from '../src/middleware'
 import resources from '../src/resources'
 
-const dev = process.env.NODE_ENV !== 'production'
-const nextapp = next({ dev })
-const nexthandle = nextapp.getRequestHandler()
-
 global.Handle =  handle
 
 const app = new Koa()
+app.keys = [config.jwtSecret]
+// x-response-time
+app.use(responseMiddleware())
+app.use(convert(logger()))
+app.use(bodyParser())
+app.use(errorMiddleware())
 
-nextapp.prepare()
-.then(() => {
-  const router = new Router()
-  app.keys = [config.jwtSecret]
-  // x-response-time
-  app.use(responseMiddleware())
-  app.use(convert(logger()))
-  app.use(bodyParser())
-  app.use(errorMiddleware())
+app.use(convert(mount('/docs', serve(`${process.cwd()}/docs`))))
+app.use(convert(mount('/upload', serve(`${process.cwd()}/upload`))))
 
-  app.use(convert(mount('/docs', serve(`${process.cwd()}/docs`))))
-  app.use(convert(mount('/upload', serve(`${process.cwd()}/upload`))))
+// 引入 restful api 路由
+resources(app)
+/**
+ *  open mysql connect
+ */
 
-  // 引入 restful api 路由
-  resources(app)
-  // 引入 views
-  router.get('/a', async ctx => {
-    await nextapp.render(ctx.req, ctx.res, '/b', ctx.query)
-    ctx.respond = false
-  })
+models.sequelize.sync().then(function() {
+  // Listen on provided port, on all network interfaces.
+  const port = config.port
 
-  router.get('/b', async ctx => {
-    await nextapp.render(ctx.req, ctx.res, '/a', ctx.query)
-    ctx.respond = false
-  })
-
-  router.get('*', async ctx => {
-    await nexthandle(ctx.req, ctx.res)
-    ctx.respond = false
-  })
-  /**
-   *  open mysql connect
-   */
-  app.use(async (ctx, next) => {
-    ctx.res.statusCode = 200
-    await next()
-  })
-
-  models.sequelize.sync().then(function() {
-    // Listen on provided port, on all network interfaces.
-    const port = config.port
-
-    app.use(router.routes())
-
-    app.listen(config.port, () => {
-      console.log(`Server started on ${config.port}`)
-    })
+  app.listen(config.port, () => {
+    console.log(`Server started on ${config.port}`)
   })
 })
+
 
 module.exports = app
