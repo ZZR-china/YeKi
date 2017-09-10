@@ -1,6 +1,8 @@
 import glob from 'glob'
 import Router from 'koa-router'
 
+const apiPrefix = '/api'
+
 export default function initModules (app) {
   glob(`${__dirname}/*`, { ignore: '**/index.js' }, (err, matches) => {
     if (err) { throw err }
@@ -8,7 +10,8 @@ export default function initModules (app) {
     matches.forEach((mod) => {
       const router = require(`${mod}/router`)
       const routes = router.default
-      const baseUrl = router.baseUrl
+      const baseUrl = apiPrefix + router.baseUrl
+      console.log('base', baseUrl)
       const instance = new Router({ prefix: baseUrl })
 
       routes.forEach((config) => {

@@ -9,5 +9,11 @@ export default [
     handlers: [
       pic.getProxy
     ]
+  }, {
+  	method: 'GET',
+  	route: '/test',
+  	handlers: [
+  	  pic.test
+  	]
   }
 ]

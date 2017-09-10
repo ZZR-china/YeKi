@@ -20,3 +20,11 @@ export async function getProxy (ctx) {
     ctx.throw(422, e.message)
   }
 }
+
+export async function test (ctx) {
+  try {
+    ctx.body = 'pic is downloading'
+  } catch (e) {
+    ctx.throw(422, e.message)
+  }
+}
