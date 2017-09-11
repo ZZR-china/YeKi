@@ -24,6 +24,7 @@ app.use(errorMiddleware())
 
 app.use(convert(mount('/docs', serve(`${process.cwd()}/docs`))))
 app.use(convert(mount('/upload', serve(`${process.cwd()}/upload`))))
+app.use(convert(mount('/statics', serve(`${process.cwd()}/statics`))))
 
 // 引入 restful api 路由
 resources(app)
